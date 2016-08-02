@@ -186,7 +186,8 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onMemberAdded(String uid, RiderInfo info) {
         Log.i(TAG, "onMemberAdded : " + mRiderGroup.getRiderInfoMap().size());
-        mAdapter.notifyItemInserted(mRiderGroup.getRiderInfoMap().size()-1);
+//        mAdapter.notifyItemInserted(mRiderGroup.getRiderInfoMap().size()-1);
+        mAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -227,6 +228,9 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             ArrayList<RiderInfo> infoList = new ArrayList<RiderInfo>(mRiderGroup.getRiderInfoMap().values());
+            for (RiderInfo info : infoList) {
+                Log.i(TAG, "  recycler pos : " + position + " : " + info.getName());
+            }
             holder.mTextView.setText(infoList.get(position).getName());
             Glide.with(GroupManageActivity.this).load(infoList.get(position).getPhotoUrl()).into(holder.mImageView);
         }
