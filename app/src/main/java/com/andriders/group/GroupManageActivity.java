@@ -115,7 +115,7 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.btnCreateGroup: {
                 // グループを作成
-                mRiderGroup = RiderGroup.getInstance(mUser);
+                mRiderGroup = RiderGroup.newInstance(mUser);
                 mAdapter = new RecyclerAdapter();
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setVisibility(View.VISIBLE);
@@ -270,7 +270,7 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
                     mUser = FirebaseAuth.getInstance().getCurrentUser();
 
                     String groupName = data.getStringExtra(BarcodeCaptureActivity.EXTRA_GROUP_NAME);
-                    mRiderGroup = RiderGroup.getInstance(groupName, mUser);
+                    mRiderGroup = RiderGroup.newInstance(groupName, mUser);
                     mTxtGroupName.setText(groupName);
                     changeViewMode(true);
 

@@ -11,7 +11,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -36,7 +35,7 @@ public class RiderGroup {
     /**
      * 所属グループは一つしかありえないと設定し、シングルトンで実装
      */
-    private static RiderGroup sSelf = null;
+    private static RiderGroup sInstance = null;
     private final FirebaseUser mUser;
     private DatabaseReference mGroupRef;
     private RiderGroupListener mListener;
@@ -53,17 +52,16 @@ public class RiderGroup {
     }
 
     /**
-     * //TODO シングルトンで初回以外はuserを受け取る気が皆無なのに、引数で設定せなあかんあたりイケてない
      * @param user
      * @return
      */
-    public static RiderGroup getInstance(@NonNull FirebaseUser user) {
+    public static RiderGroup newInstance(@NonNull FirebaseUser user) {
         // 既にあるインスタンスは全て破棄。あくまで所属は１グループ限定とするため
-        if (sSelf != null) {
-            sSelf = null;
+        if (sInstance != null) {
+            sInstance = null;
         }
-        sSelf = new RiderGroup(user);
-        return sSelf;
+        sInstance = new RiderGroup(user);
+        return sInstance;
     }
 
     /**
@@ -72,13 +70,20 @@ public class RiderGroup {
      * @param user
      * @return
      */
-    public static RiderGroup getInstance(@NonNull String groupName, @NonNull FirebaseUser user) {
+    public static RiderGroup newInstance(@NonNull String groupName, @NonNull FirebaseUser user) {
         // 既にあるインスタンスは全て破棄。あくまで所属は１グループ限定とするため
-        if (sSelf != null) {
-            sSelf = null;
+        if (sInstance != null) {
+            sInstance = null;
         }
-        sSelf = new RiderGroup(groupName, user);
-        return sSelf;
+        sInstance = new RiderGroup(groupName, user);
+        return sInstance;
+    }
+
+    /**
+     * 所属しているグループを取得する
+     */
+    public static RiderGroup getInstance() {
+        return sInstance;
     }
 
     /**
