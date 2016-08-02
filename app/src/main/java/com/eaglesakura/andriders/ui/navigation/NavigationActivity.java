@@ -8,6 +8,7 @@ import com.eaglesakura.android.framework.delegate.activity.ContentHolderActivity
 import com.eaglesakura.android.margarine.Bind;
 import com.eaglesakura.android.thread.ui.UIHandler;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -66,7 +67,21 @@ public class NavigationActivity extends NavigationBaseActivity {
         mMenuController.onPause();
     }
 
-    final MenuController.MenuCallback mMenuCallback = (fragment) -> {
-        nextNavigation(fragment, 0x00);
+//    final MenuController.MenuCallback mMenuCallback = (fragment) -> {
+//        nextNavigation(fragment, 0x00);
+//    };
+
+    MenuController.MenuCallback mMenuCallback = new MenuController.MenuCallback() {
+
+        @Override
+        public void requestChangeContent(NavigationBaseFragment fragment) {
+            nextNavigation(fragment, 0x00);
+        }
+
+        @Override
+        public void callActivity(Class<?> cls) {
+            Intent intent = new Intent(NavigationActivity.this, cls);
+            startActivity(intent);
+        }
     };
 }

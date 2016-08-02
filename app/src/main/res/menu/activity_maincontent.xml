@@ -34,4 +34,9 @@
             android:icon="@android:drawable/ic_dialog_info"
             android:title="@string/Main.Menu.Information"/>
 
+    <item
+        android:id="@+id/Main.Menu.Group"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="@string/Main.Menu.Group"/>
+
 </menu>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutCreateGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="グループに属していません"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="2"
+            android:text="作成"
+            android:id="@+id/btnCreateGroup"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="2"
+            android:text="参加"
+            android:id="@+id/btnJoinGroup"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutShowGroup"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:id="@+id/txtGroupName"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="2"
+            android:id="@+id/imgGroupName"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:layout_weight="2"
+            android:text="脱退"
+            android:id="@+id/btnExitGroup"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="members"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerGpsLogger"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

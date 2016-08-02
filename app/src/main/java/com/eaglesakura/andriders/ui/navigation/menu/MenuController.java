@@ -1,5 +1,6 @@
 package com.eaglesakura.andriders.ui.navigation.menu;
 
+import com.andriders.group.GroupManageActivity;
 import com.eaglesakura.andriders.R;
 import com.eaglesakura.andriders.service.central.CentralService;
 import com.eaglesakura.andriders.ui.navigation.NavigationBaseFragment;
@@ -15,6 +16,7 @@ import com.eaglesakura.android.margarine.MargarineKnife;
 import com.eaglesakura.android.margarine.OnClick;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -125,6 +127,7 @@ public class MenuController {
 
     public interface MenuCallback {
         void requestChangeContent(NavigationBaseFragment fragment);
+        void callActivity(Class<?> cls);
     }
 
     private final NavigationView.OnNavigationItemSelectedListener mNaviItemSelectedImpl = (menuItem) -> {
@@ -150,6 +153,10 @@ public class MenuController {
             case R.id.Main_Menu_Gadgets:
                 mCallback.requestChangeContent(GadgetSettingFragmentMain.newInstance(mContext));
                 break;
+            case R.id.Main_Menu_Group:
+                mCallback.callActivity(GroupManageActivity.class);
+                break;
+
             default:
                 return false;
         }
