@@ -286,6 +286,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
                         setResult(RESULT_OK, intent);
                         finish();
                     } else {
+                        Toast.makeText(BarcodeCaptureActivity.this, item.rawValue, Toast.LENGTH_LONG).show();
                         Toast.makeText(BarcodeCaptureActivity.this, "それは無関係なQRコードです...", Toast.LENGTH_LONG).show();
                     }
                 }

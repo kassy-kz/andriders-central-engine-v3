@@ -119,6 +119,7 @@ public class RiderGroup {
         mGroupRef = database.getReference().child(groupName);
         mUser = user;
         mRiderInfoMap = new HashMap<String, RiderInfo>();
+        mGroupName = groupName;
     }
 
     /**

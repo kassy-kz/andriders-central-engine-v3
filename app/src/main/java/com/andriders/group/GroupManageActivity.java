@@ -118,6 +118,7 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
                 mRiderGroup = RiderGroup.getInstance(mUser);
                 mAdapter = new RecyclerAdapter();
                 mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setVisibility(View.VISIBLE);
 
                 // QRコードを取得
                 String url = "http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" + mRiderGroup.getGroupName();
@@ -143,6 +144,8 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
             case R.id.btnExitGroup: {
                 // グループ脱退
                 mRiderGroup.exitGroup();
+                mRiderGroup = null;
+                mRecyclerView.setVisibility(View.GONE);
                 // 表示切り替え
                 changeViewMode(false);
             }
@@ -182,6 +185,7 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
      */
     @Override
     public void onMemberAdded(String uid, RiderInfo info) {
+        Log.i(TAG, "onMemberAdded : " + mRiderGroup.getRiderInfoMap().size());
         mAdapter.notifyItemInserted(mRiderGroup.getRiderInfoMap().size()-1);
     }
 
@@ -270,6 +274,10 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
                     mTxtGroupName.setText(groupName);
                     changeViewMode(true);
 
+                    // QRコードを取得
+                    String url = "http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=" + mRiderGroup.getGroupName();
+                    Glide.with(this).load(url).into(mImageGroupName);
+
                     // リスナーセット
                     mRiderGroup.startListening(this);
 
@@ -280,6 +288,7 @@ public class GroupManageActivity extends AppCompatActivity implements View.OnCli
                     // recyclerセット
                     mAdapter = new RecyclerAdapter();
                     mRecyclerView.setAdapter(mAdapter);
+                    mRecyclerView.setVisibility(View.VISIBLE);
                 }
             }
         }
