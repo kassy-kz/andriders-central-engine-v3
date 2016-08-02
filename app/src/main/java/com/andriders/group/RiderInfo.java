@@ -17,8 +17,8 @@ public class RiderInfo {
     private long mDate;
     private String mMessage;
 
-    // 適当だが、photoUrlがない場合に備えたデフォアイコン
-    private static final String DEFAULT_ICON_URL = "https://dl.dropboxusercontent.com/u/32997453/ic_remove_circle_black_48dp.png";
+    // TODO 適当だが、photoUrlがない場合に備えたデフォアイコン
+    private static final String DEFAULT_ICON_URL = "https://dl.dropboxusercontent.com/u/32997453/ic_account_circle_black_48dp.png";
 
     /**
      * コンストラクタその１（photoUrlがUriクラス）

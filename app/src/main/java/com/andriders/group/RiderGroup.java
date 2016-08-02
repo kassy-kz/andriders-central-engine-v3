@@ -11,8 +11,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by kashimoto on 16/07/31.
@@ -100,7 +102,7 @@ public class RiderGroup {
 
     /**
      * コンストラクタ 自分でグループをつくる場合はこちらを使用
-     * @param user
+     * @param
      */
     private RiderGroup(@NonNull FirebaseUser user) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -126,11 +128,14 @@ public class RiderGroup {
      * グループの名前を決める関数、実装はまだ適当
      * QRコードで検索するときの識別子として、"AndridersGroup_" で始める
      * TODO ユーザーIDをそのままつかってるがハッシュ化くらいするべきか？
+     * UUIDをつくってそのままグループ名にしてしまうか
      * @param user
      * @return
      */
     private String decideGroupName(FirebaseUser user) {
-        mGroupName = GROUP_NAME_PREFIX + user.getUid();
+        String uuid = UUID.randomUUID().toString();
+        // 文字列でグループ名と認識するために
+        mGroupName = GROUP_NAME_PREFIX + uuid;
         Log.i(TAG, "group name : " + mGroupName);
         return mGroupName;
     }

@@ -126,8 +126,14 @@
         </service>
 
         <!-- グループ機能 -->
-        <activity android:name="com.andriders.group.BarcodeCaptureActivity"></activity>
-        <activity android:name="com.andriders.group.GroupManageActivity"></activity>
+        <activity
+            android:name="com.andriders.group.BarcodeCaptureActivity">
+        </activity>
+        <activity
+            android:name="com.andriders.group.GroupManageActivity"
+            android:label="グループ管理"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
     </application>
 
 </manifest>
